@@ -1,7 +1,6 @@
 #!/usr/bin/node
-function add (a, b) {
+let add = function(a, b) {
   return a + b;
 }
-/* test case
-const addition = add(40, 20);
-console.log(addition); */
+
+add(a, b);
