@@ -1,5 +1,5 @@
-#!/usr/bin/node
-function add (a, b) {
+#!/usr/bin/node\
+
+const add = function (a, b) {
   return a + b;
 }
-console.log(add(a, b))
