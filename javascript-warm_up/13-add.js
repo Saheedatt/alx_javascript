@@ -1,7 +1,7 @@
 #!/usr/bin/node
-const a = "";
-const b = "";
-const add = function (a, b) {
+const a = '';
+const b = '';
+function add (a, b) {
   return a + b;
-};
+}
 add(a, b);
