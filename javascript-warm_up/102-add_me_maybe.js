@@ -1,5 +1,5 @@
 #!/usr/bin/node
-function incrementAndCall (number, theFunction) {
+module.exports.addMeMaybe = function (number, theFunction) {
   number++;
   theFunction(number);
-}
+};
