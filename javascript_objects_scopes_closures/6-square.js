@@ -1,18 +1,22 @@
 #!/usr/bin/node
-class Square extends Square {
-  constructor (size) {
+const BaseSquare = require('./5-square');
+
+class Square extends BaseSquare {
+  constructor(size) {
+    //calling constructor of the parent class using super
     super(size);
   }
-
-  charPrint (c) {
+  
+  charPrint(c) {
     if (c === undefined) {
       c = 'X';
     }
 
-    for (let i = 0; i < this.height; i++) {
+    if (this.width && this.height) {
+      for(let i = 0; i< this.height; i++)
       console.log(c.repeat(this.width));
     }
   }
 }
 
-module.exports = Square; // Export the Square class
+module.exports = Square;
