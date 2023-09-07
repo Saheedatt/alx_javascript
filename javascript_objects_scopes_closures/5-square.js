@@ -5,8 +5,6 @@ class Rectangle {
       this.width = w;
       this.height = h;
     } else {
-      // to create an empty object if either w or h
-      // is not a positive integer or equal to 0.
       Object.create(null);
     }
   }
@@ -18,17 +16,21 @@ class Rectangle {
   }
 
   rotate () {
-    // to exchange the width and height of the rectangle.
     const temp = this.width;
     this.width = this.height;
     this.height = temp;
   }
 
   double () {
-    // to multiply the width and height of the rectangle by 2.
     this.width *= 2;
     this.height *= 2;
   }
 }
 
-module.exports = Rectangle;
+class Square extends Rectangle {
+  constructor (size) {
+    super(size, size);
+  }
+}
+
+module.exports = Square;
