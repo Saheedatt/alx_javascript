@@ -1,8 +1,12 @@
 #!/usr/bin/node
-
 const request = require('request');
 
-const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
+if (process.argv.length < 3) {
+  console.error('Please provide the API URL as the first argument.');
+  process.exit(1);
+}
+
+const apiUrl = process.argv[2];
 
 request.get(apiUrl, (error, response, body) => {
   if (error) {
@@ -17,6 +21,7 @@ request.get(apiUrl, (error, response, body) => {
 
   try {
     const todos = JSON.parse(body);
+
     const completedTasksByUser = {};
 
     todos.forEach(todo => {
@@ -29,9 +34,7 @@ request.get(apiUrl, (error, response, body) => {
       }
     });
 
-    for (const userId in completedTasksByUser) {
-      console.log(`${userId}: ${completedTasksByUser[userId]}`);
-    }
+    console.log(completedTasksByUser);
   } catch (parseError) {
     console.error('Error parsing API response:', parseError.message);
     process.exit(1);
