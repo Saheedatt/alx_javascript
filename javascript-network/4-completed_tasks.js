@@ -30,7 +30,7 @@ request.get(apiUrl, (error, response, body) => {
     });
 
     for (const userId in completedTasksByUser) {
-      console.log(`User ${userId}: ${completedTasksByUser[userId]} completed tasks`);
+      console.log(`${userId}: ${completedTasksByUser[userId]}`);
     }
   } catch (parseError) {
     console.error('Error parsing API response:', parseError.message);
