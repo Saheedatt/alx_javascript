@@ -15,32 +15,37 @@
     <button type="button" onclick="showCookies()">Show me cookies</button>
     <script>
         function setCookies(){
-            const firstNameValue = document.getElementById('firstname').value;
-            const emailValue = document.getElementById('email').value;
+            const firstNameInput = document.getElementById('firstname');
+            const emailInput = document.getElementById('email');
+
+            const firstNameValue = firstNameInput.value;
+            const emailValue = emailInput.value;
 
             const expirationDate = new Date();
             expirationDate.setDate(expirationDate.getDate() + 10);
 
-            const firstNameCookie = `Firstname=${firstNameValue};expires=${expirationDate.toUTCString()}`;
-            const emailCookie = `Email=${emailValue};expires=${expirationDate.toUTCString()}`;
-
-            document.cookie = `Firstname=${firstNameValue}`;
-            document.cookie = `Email=${emailValue}`;
+            document.cookies = "Firstname =" + firstNameValue + "; Email =" + emailValue +  "; Expires =" + expirationDate;
+            //console.log(document.cookies)
 }
 
         function showCookies() {
-            const cookies = document.cookie.split(';');
-            const p = document.createElement('p');
-            p.innerHTML = '<b>Cookies:</b><br>';
 
-            cookies.forEach(cookie => {
-                const [cookieName, cookieValue] = cookie.trim().split('=');
-                if (cookieName === 'Firstname' || cookieName === 'Email') {
-                    p.innerHTML += `${cookieName}: ${decodeURIComponent(cookieValue)}<br>`;
+            function getCookie(name) {
+                let cookies = document.cookies.split(';');
+                for (let i = 0; i< cookies.length; i++){
+                    let cookie = cookies[i].trim();
+                    if(cookie.indexOf(name + '=') === 0){
+                        return cookie.sunstring(name.length + 1);
+                    }
                 }
-            });
+                return '';
+            }
+            const firstNameCookie = getCookie("firstname");
+            const emailCookie = getCookie("email");
 
-        document.body.appendChild(p);
+            const p = document.createElement('p');
+            p.innerHTML = '<b>Cookies:</b><br>' + firstNameCookie + ";" + emailCookie ;
+            document.body.appendChild(p);
 }
     </script>
 </body>
