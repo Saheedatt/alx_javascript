@@ -25,28 +25,27 @@
             expirationDate.setDate(expirationDate.getDate() + 10);
 
             document.cookies = "Firstname =" + firstNameValue + "; Email =" + emailValue +  "; Expires =" + expirationDate;
-            //console.log(document.cookies)
+            console.log(document.cookies)
 }
+        function getCookie(name) {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.indexOf(name + '=') === 0) {
+                    return cookie.substring(name.length + 1);
+                }
+            }
+            return '';
+        }
 
         function showCookies() {
-
-            function getCookie(name) {
-                let cookies = document.cookies.split(';');
-                for (let i = 0; i< cookies.length; i++){
-                    let cookie = cookies[i].trim();
-                    if(cookie.indexOf(name + '=') === 0){
-                        return cookie.substring(name.length + 1);
-                    }
-                }
-                return '';
-            }
             const firstNameCookie = getCookie("firstname");
             const emailCookie = getCookie("email");
 
             const p = document.createElement('p');
-            p.innerHTML = '<b>Cookies:</b><br>' + firstNameCookie + ";" + emailCookie ;
+            p.innerHTML = 'Email: ' + emailCookie + " - Firstname: " + firstNameCookie;
             document.body.appendChild(p);
-}
+        }
     </script>
 </body>
 </html>
