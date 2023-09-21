@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Creating and Removing Elements</title>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const container = document.getElementById('container');
+
+    const newParagraph = document.createElement('p');
+    newParagraph.innerText = 'New paragraph';
+
+    container.appendChild(newParagraph);
+
+    newParagraph.style.display = 'none';
+
+    const toggleButton = document.createElement('button');
+    toggleButton.innerText = 'Toggle Paragraph';
+
+    document.body.appendChild(toggleButton);
+
+    toggleButton.addEventListener('click', () => {
+      if (newParagraph.style.display === 'none' || newParagraph.style.display === '') {
+        newParagraph.style.display = 'block';
+      } else {
+        newParagraph.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
