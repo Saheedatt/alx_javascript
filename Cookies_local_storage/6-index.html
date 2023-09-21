@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <script>
+        const availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+        //to check if local storage is enabled or not.
+        function isSessionStorageSupported() {
+            try {
+                const testKey = "__test__";
+                sessionStorage.setItem(testKey, testKey);
+                sessionStorage.removeItem(testKey);
+                return true;
+            } catch (error) {
+                return false;
+            }
+}
+        if (!isSessionStorageSupported()) {
+            alert("Sorry, your browser does not support Web storage. Try again with a better one");
+        } else {
+            function addItemToCart(item) {
+                sessionStorage.setItem(item, "true");
+                displayCart();
+            }
+            function createStore() {
+                const ul = document.createElement("ul");
+                document.body.appendChild(ul);
+
+                availableItems.forEach(item => {
+                    const li = document.createElement("li");
+                    li.textContent = item;
+                    li.addEventListener("click", () => addItemToCart(item));
+                    ul.appendChild(li);
+                });
+            }
+            function displayCart() {
+                const cartItemsCount = Object.keys(sessionStorage).length;
+                
+                if (cartItemsCount > 0) {
+                    const cartMessage = `You previously had ${cartItemsCount} item(s) in your cart`;
+                    const pElement = document.createElement("p");
+                    pElement.textContent = cartMessage;
+                    document.body.appendChild(pElement);
+                }
+            }
+            createStore();
+            displayCart();
+        }
+
+    </script>
+</body>
+</html>
